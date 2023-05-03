@@ -1,8 +1,10 @@
-import { migrate } from "drizzle-orm/better-sqlite3/migrator"
 import { db } from "./db"
+import { InsertUser, Users } from "./schema/users"
 
 async function main() {
-  migrate(db, { migrationsFolder: "./app/db/migrations" })
+
+  // const users: InsertUser[] = []
+  // db.insert(Users).values(users).run()
 
   console.log(`🌱 finished seeding data.`)
 }

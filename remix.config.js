@@ -1,8 +1,8 @@
 /** @type {import('@remix-run/dev').AppConfig} */
 module.exports = {
   ignoredRouteFiles: ["**/.*"],
+  tailwind: true,
   future: {
-    unstable_tailwind: true,
     v2_routeConvention: true
   }
 };

@@ -9,6 +9,7 @@
     "start": "remix-serve build",
     "typecheck": "tsc",
     "db:seed": "node -r esbuild-register app/db/seed",
+    "db:migrate": "node -r esbuild-register app/db/migrate",
     "db:generate": "npx drizzle-kit generate:sqlite"
   },
   "keywords": [],
