@@ -6,11 +6,12 @@ import { storage } from "~/util/session.server";
 import { useLoaderData, useNavigate } from "@remix-run/react";
 
 export async function loader({ request }: LoaderArgs) {
-  console.log(`Loader running`)
   const challenge = generateChallenge()
+  const rpId = process.env.RPID
   let session = await storage.getSession(request.headers.get('cookie'))
   session.set('challenge', challenge)
   return json({
+    rpId,
     challenge
   }, {
     headers: {
@@ -38,7 +39,7 @@ export default function Register() {
   const [isAvailable, setIsAvailable] = useState<boolean | null>(null);
   const [error, setError] = useState(null)
 
-  const { challenge } = useLoaderData<typeof loader>()
+  const { rpId, challenge } = useLoaderData<typeof loader>()
 
   useEffect(() => {
     const checkAvailability = async () => {
@@ -57,8 +58,8 @@ export default function Register() {
         challenge,
         rp: {
           // change these
-          name: 'next-webauthn',
-          id: 'localhost'
+          name: rpId!.split('.')[0],
+          id: rpId!
         },
         user: {
           id: window.crypto.randomUUID(),
