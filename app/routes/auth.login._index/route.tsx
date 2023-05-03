@@ -6,11 +6,11 @@ import { getSession, storage } from "~/util/session.server"
 import { useLoaderData, useNavigate } from "@remix-run/react"
 
 export async function loader({ request }: LoaderArgs) {
-  let challenge = generateChallenge()
-  console.log(`generating new challenge`, challenge)
-  let session = await getSession(request)
+  const challenge = generateChallenge()
+  const session = await getSession(request)
+  const rpId = process.env.RPID
   session.set('challenge', challenge)
-  return json({ challenge }, {
+  return json({ rpId, challenge }, {
     headers: {
       'Set-Cookie': await storage.commitSession(session)
     }
@@ -24,7 +24,7 @@ export default function LoginPage() {
   const [error, setError] = useState("")
   const [isAvailable, setIsAvailable] = useState<boolean | null>(null)
 
-  const { challenge } = useLoaderData<typeof loader>()
+  const { rpId, challenge } = useLoaderData<typeof loader>()
 
   useEffect(() => {
     async function checkAvailability() {
@@ -43,7 +43,7 @@ export default function LoginPage() {
         challenge,
         timeout: 60000,
         userVerification: 'required',
-        rpId: 'localhost'
+        rpId
       }
     })
 
