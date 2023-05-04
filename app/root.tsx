@@ -11,7 +11,8 @@ import {
 import stylesheet from "tailwindcss/tailwind.css"
 
 export const links: LinksFunction = () => [
-  { rel: 'stylesheet', href: stylesheet }
+  { rel: 'stylesheet', href: stylesheet },
+  { rel: 'stylesheet', href: '/resources/brand.css' },
 ]
 
 export const meta: MetaFunction = () => ({

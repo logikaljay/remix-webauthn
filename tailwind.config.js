@@ -12,7 +12,7 @@ module.exports = {
         'inverted': '#0d1117',
         bg: {
           'normal': '#21262e',
-          'normal-alt': '#30363d'
+          'normal-alt': '#30363d' 
         },
         border: {
           'normal': '#30363d',

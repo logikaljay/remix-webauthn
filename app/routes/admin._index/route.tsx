@@ -19,12 +19,15 @@ export default function AdminPage() {
   let { user } = useLoaderData<typeof loader>()
 
   return (
-    <>
-      <p>Admin page</p>
-      <pre>{JSON.stringify(user ?? {}, null, 2)}</pre>
-      <form method="post" action="/admin/logout">
-        <button>Log out</button>
+    <div className="flex flex-col m-auto max-w-lg">
+
+      <h1 className="text-6xl font-medium pb-10">Welcome </h1>
+      <pre className="bg-slate-900 text-white p-3 rounded-lg">{JSON.stringify(user ?? {}, null, 2)}</pre>
+      <form action="/admin/logout">
+        <button className="mt-10 ml-auto bg-brand text-inherit py-3.5 px-12 rounded-lg hover:brightness-125 transform-color duration-300">
+          Log out
+        </button>
       </form>
-    </>
+    </div>
   )
 }
